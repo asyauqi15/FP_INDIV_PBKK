@@ -1,6 +1,6 @@
 <?php
 
-namespace Its\Example\Dashboard;
+namespace Uqi\Dashboard;
 
 use Phalcon\Di\DiInterface;
 use Phalcon\Loader;
@@ -14,19 +14,19 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces([
 
-            'Its\Example\Dashboard\Core\Domain\Event' => __DIR__ . '/Core/Domain/Event',
-            'Its\Example\Dashboard\Core\Domain\Model' => __DIR__ . '/Core/Domain/Model',
-            'Its\Example\Dashboard\Core\Domain\Repository' => __DIR__ . '/Core/Domain/Repository',
-            'Its\Example\Dashboard\Core\Domain\Service' => __DIR__ . '/Core/Domain/Service',
+            'Uqi\Dashboard\Core\Domain\Event' => __DIR__ . '/Core/Domain/Event',
+            'Uqi\Dashboard\Core\Domain\Model' => __DIR__ . '/Core/Domain/Model',
+            'Uqi\Dashboard\Core\Domain\Repository' => __DIR__ . '/Core/Domain/Repository',
+            'Uqi\Dashboard\Core\Domain\Service' => __DIR__ . '/Core/Domain/Service',
 
-            'Its\Example\Dashboard\Core\Application\Service' => __DIR__ . '/Core/Application/Service',
-            'Its\Example\Dashboard\Core\Application\EventSubscriber' => __DIR__ . '/Core/Application/EventSubscriber',
+            'Uqi\Dashboard\Core\Application\Service' => __DIR__ . '/Core/Application/Service',
+            'Uqi\Dashboard\Core\Application\EventSubscriber' => __DIR__ . '/Core/Application/EventSubscriber',
 
-            'Its\Example\Dashboard\Infrastructure\Persistence' => __DIR__ . '/Core/Infrastructure/Persistence',
+            'Uqi\Dashboard\Infrastructure\Persistence' => __DIR__ . '/Infrastructure/Persistence',
 
-            'Its\Example\Dashboard\Presentation\Web\Controller' => __DIR__ . '/Presentation/Web/Controller',
-            'Its\Example\Dashboard\Presentation\Web\Validator' => __DIR__ . '/Presentation/Web/Validator',
-            'Its\Example\Dashboard\Presentation\Api\Controller' => __DIR__ . '/Presentation/Api/Controller',
+            'Uqi\Dashboard\Presentation\Web\Controller' => __DIR__ . '/Presentation/Web/Controller',
+            'Uqi\Dashboard\Presentation\Web\Validator' => __DIR__ . '/Presentation/Web/Validator',
+            'Uqi\Dashboard\Presentation\Api\Controller' => __DIR__ . '/Presentation/Api/Controller',
             
         ]);
 
@@ -40,5 +40,7 @@ class Module implements ModuleDefinitionInterface
         $di->get('config')->merge($moduleConfig);
 
         include_once __DIR__ . '/config/services.php';
+        include_once __DIR__ . '/config/repository.php';
+        include_once __DIR__ . '/config/usecase.php';
     }
 }

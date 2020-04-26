@@ -2,12 +2,12 @@
 
 return array(
     'dashboard' => [
-        'namespace' => 'Its\Example\Dashboard',
-        'webControllerNamespace' => 'Its\Example\Dashboard\Presentation\Web\Controller',
+        'namespace' => 'Uqi\Dashboard',
+        'webControllerNamespace' => 'Uqi\Dashboard\Presentation\Web\Controller',
         'apiControllerNamespace' => '',
-        'className' => 'Its\Example\Dashboard\Module',
+        'className' => 'Uqi\Dashboard\Module',
         'path' => APP_PATH . '/modules/dashboard/Module.php',
-        'defaultRouting' => true,
+        'defaultRouting' => false,
         'defaultController' => 'index',
         'defaultAction' => 'index'
     ],
