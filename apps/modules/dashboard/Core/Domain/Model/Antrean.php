@@ -6,7 +6,7 @@ class Antrean
 {
     private DateTime $tanggal_antrean;
     
-    private int $id_antrean;
+    private $id_antrean;
 
     private int $id_akun;
 
@@ -14,7 +14,7 @@ class Antrean
 
     private int $status;
 
-    public function __construct($tanggal_antrean, $id_antrean, $id_akun, $id_rumah_sakit, $status)
+    public function __construct($tanggal_antrean, $id_antrean = NULL, $id_akun, $id_rumah_sakit, $status)
 	{
 		$this->tanggal_antrean = $tanggal_antrean;
 		$this->id_antrean = $id_antrean;

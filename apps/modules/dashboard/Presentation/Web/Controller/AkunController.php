@@ -114,18 +114,19 @@ class AkunController extends BaseController
 			$this->session->set('akun', array(
 				'id_akun' => $akun->getIdAkun(),
 				'username' => $akun->getUsername(),
-				'email' => $akun->getEmail()
+				'email' => $akun->getEmail(),
+				'jenis_akun' => $akun->getJenisAkun()
 			));
 
-			$this->response->redirect('dashboard');
+			$this->response->redirect('/');
 			// $this->dispatcher->forward([
 			// 	'controller' => 'user',
 			// 	'action'     => 'index',
 			// ]);
 			$this->view->disable();
 		} catch (\Exception $e) {
-			// $this->flashSession->error("Invalid Username / Password");
-			$this->flashSession->error($e);
+			$this->flashSession->error("Invalid Username / Password");
+			// $this->flashSession->error($e);
 			return $this->response->redirect('login');
 		}
 	}

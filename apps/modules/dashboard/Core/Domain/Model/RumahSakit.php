@@ -4,26 +4,35 @@ namespace Uqi\Dashboard\Core\Domain\Model;
 
 class RumahSakit
 {   
-    private int $id_rumah_sakit;
+    private $id_rumah_sakit;
     
-    private string $id_villages;
+    private $id_villages;
 
 	private string $nama_rumah_sakit;
 
 	private string $alamat_rumah_sakit;
 
-    private int $kuota_rumah_sakit;
+    private $kuota_rumah_sakit;
     
-    private int $kuota_terisi;
+    private $kuota_terisi;
 
-    private int $jumlah_dokter;
+    private $jumlah_dokter;
 
-    private int $jumlah_perawat;
+    private $jumlah_perawat;
 
-    private int $jumlah_tenaga_medis_lainnya;
+    private $jumlah_tenaga_medis_lainnya;
 
-    public function __construct($id_rumah_sakit, $id_villages, $nama_rumah_sakit, $alamat_rumah_sakit, $kuota_rumah_sakit, $kuota_terisi, $jumlah_dokter,
-        $jumlah_perawat, $jumlah_tenaga_medis_lainnya)
+    public function __construct(
+		$nama_rumah_sakit, 
+		$alamat_rumah_sakit, 
+		$id_rumah_sakit = NULL, 
+		$id_villages = NULL, 
+		$kuota_rumah_sakit = NULL, 
+		$kuota_terisi = NULL, 
+		$jumlah_dokter = NULL,
+		$jumlah_perawat = NULL, 
+		$jumlah_tenaga_medis_lainnya = NULL
+		)
 	{
 		$this->id_rumah_sakit = $id_rumah_sakit;
         $this->id_villages = $id_villages;

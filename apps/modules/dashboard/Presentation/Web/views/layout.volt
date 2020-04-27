@@ -11,27 +11,12 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ url('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <style>
-        body {
-            padding-top: 5rem;
-        }
-
-        .content {
-            padding: 3rem 1.5rem;
-        }
-
-    </style>
-
     {% block styles %}{% endblock %}
 
 </head>
 <body>
-    <main role="main" class="container">
-        <div class="content">
-            {% block content %}{% endblock %}
-        </div>
-    </main>
-
+    {% block content %}{% endblock %}
+    
     <script src="{{ url('assets/js/jquery-3.4.1.js') }}"></script>
     <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
 

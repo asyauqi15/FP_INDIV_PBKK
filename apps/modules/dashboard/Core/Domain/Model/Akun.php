@@ -4,13 +4,13 @@ namespace Uqi\Dashboard\Core\Domain\Model;
 
 class Akun
 {
-    private int $id_akun;
+    private $id_akun;
     
-    private int $id_rumah_sakit;
+    private $id_rumah_sakit;
     
-    private string $id_villages;
+    private $id_villages;
 
-    private int $id_pasien;
+    private $id_pasien;
 
 	private string $username;
 
@@ -20,18 +20,31 @@ class Akun
 
     private int $jenis_akun;
     
-    private int $jenis_identitas;
+    private $jenis_identitas;
     
-    private string $nomor_identitas;
+    private $nomor_identitas;
 
-    private string $nama_lengkap;
+    private $nama_lengkap;
 
-    private string $alamat_lengkap;
+    private $alamat_lengkap;
 
-    private int $jenis_kelamin;
+    private $jenis_kelamin;
 
-    public function __construct($username, $email, $password, $jenis_akun, $id_akun = 0, $id_rumah_sakit = 0, $id_villages = "", $id_pasien = 0, $jenis_identitas = 0, $nomor_identitas = "", $nama_lengkap = "",
-        $alamat_lengkap = "", $jenis_kelamin = 0)
+    public function __construct(
+		$username,
+		$email,
+		$password,
+		$jenis_akun,
+		$id_akun = NULL,
+		$id_rumah_sakit = NULL,
+		$id_villages = NULL,
+		$id_pasien = NULL,
+		$jenis_identitas = NULL,
+		$nomor_identitas = NULL,
+		$nama_lengkap = NULL,
+		$alamat_lengkap = NULL,
+		$jenis_kelamin = NULL
+	)
 	{
 		$this->id_akun = $id_akun;
 		$this->id_rumah_sakit = $id_rumah_sakit;

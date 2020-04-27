@@ -8,6 +8,19 @@ class IndexController extends Controller
 {
     public function indexAction()
     {
-        $this->view->pick('dashboard');
+        if($this->session->akun!=NULL){
+            if($this->session->akun['jenis_akun']==2){
+                $this->view->pick('admin/dashboard');
+            }
+            elseif($this->session->akun['jenis_akun']==1){
+                $this->view->pick('adminrumahsakit/dashboard');
+            }
+            else{
+                $this->view->pick('user/dashboard');
+            }
+        }
+        else{
+            $this->view->pick('dashboard');
+        }
     }
 }

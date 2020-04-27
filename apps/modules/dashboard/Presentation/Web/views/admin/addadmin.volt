@@ -1,6 +1,6 @@
-{% extends 'layout.volt' %}
+{% extends 'admin/adminlayout.volt' %}
 
-{% block title %}Daftar{% endblock %}
+{% block title %}Tambah Admin{% endblock %}
 
 {% block styles %}
     <style>
@@ -16,18 +16,17 @@
             margin-right: auto;
             display: block;
         }
-
-        body {
-            padding: 5rem 0rem;
+        .container{
+            padding-top: 2em;
         }
     </style>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1 class="title">Daftar Antrivit</h1>
+    <h1 class="title">Register Admin Antrivit</h1>
     <p>{{ this.flashSession.output() }}</p>
-    <form class="px-4 py-3" method="POST" action="{{ url('register/submit') }}">
+    <form class="px-4 py-3" method="POST" action="{{ url('/addadmin/submit') }}">
         <div class="form-group">
             <label>Username</label>
             <input type="text" class="form-control" placeholder="Username" name="username" required="required">
@@ -44,11 +43,9 @@
             <label>Confirm Password</label>
             <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required="required">
         </div>
-        <input type="hidden" name="jenis_akun" value="0">
+        <input type="hidden" name="jenis_akun" value="2">
         <button type="submit" class="btn btn-danger btn-submit">Daftar</button>
     </form>
-    <div class="dropdown-divider"></div>
-    <p class="after-form">Sudah memiliki akun? <a class="text-danger" href="{{url('login')}}">Login Di Sini!</a></p>
 </div>
 {% endblock %}
 

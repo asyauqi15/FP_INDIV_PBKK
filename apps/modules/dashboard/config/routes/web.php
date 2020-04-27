@@ -44,9 +44,48 @@ $router->addGet('/logout', [
     'action' => 'logout'
 ]);
 
-$router->addGet('/dashboard', [
+//==========
+//-----Admin
+//==========
+
+$router->addGet('/addadmin', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'index',
-    'action' => 'index'
+    'controller' => 'admin',
+    'action' => 'registerAdmin'
+]);
+
+$router->addPost('/addadmin/submit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'registerAdminSubmit'
+]);
+
+$router->addGet('/addrumahsakit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'registerRumahSakit'
+]);
+
+$router->addPost('/addrumahsakit/submit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'registerRumahSakitSubmit'
+]);
+
+$router->addGet('/addadminrumahsakit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'registerAdminRumahSakit'
+]);
+
+$router->addPost('/addadminrumahsakit/submit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'registerAdminRumahSakitSubmit'
 ]);

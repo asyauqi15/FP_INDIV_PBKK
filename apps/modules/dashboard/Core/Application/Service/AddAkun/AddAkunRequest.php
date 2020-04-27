@@ -4,16 +4,16 @@ namespace Uqi\Dashboard\Core\Application\Service\AddAkun;
 
 class AddAkunRequest 
 {
-	protected string $username;
-	protected string $email;
-	protected string $password;
-	protected int $jenis_akun;
+	protected $username;
+	protected $email;
+	protected $password;
+	protected $jenis_akun;
 
 	public function __construct(
-		string $username, 
-		string $email, 
-		string $password, 
-		int $jenis_akun
+		$username, 
+		$email, 
+		$password, 
+		$jenis_akun
 	)
 	{
 		$this->username = $username;
