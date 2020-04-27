@@ -37,9 +37,16 @@ $router->addPost('/login/submit', [
     'action' => 'loginSubmit'
 ]);
 
-$router->addPost('/logout/submit', [
+$router->addGet('/logout', [
     'namespace' => $namespace,
     'module' => 'dashboard',
     'controller' => 'akun',
     'action' => 'logout'
+]);
+
+$router->addGet('/dashboard', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'index',
+    'action' => 'index'
 ]);

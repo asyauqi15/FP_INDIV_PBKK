@@ -31,26 +31,6 @@ class SqlServerAkunRepository implements AkunRepositoryInterface
 
 		return $result;
     }
-    
-    // public function findAkun(Akun $akun)
-    // {
-    //     return;
-    // }
-
-    // public function loginAkun(Akun $akun)
-    // {
-    //     return;
-    // }
-
-    // public function updateAkun(Akun $akun)
-    // {
-    //     return;
-    // }
-
-    // public function deleteAkun(Akun $akun)
-    // {
-    //     return;
-    // }
 
 	// public function findUserById(UserId $id) : ?User 
 	// {
@@ -76,34 +56,33 @@ class SqlServerAkunRepository implements AkunRepositoryInterface
 		
 	// }
 
-	// public function LoginUser(string $key, string $password) : ?User
-	// {
-	// 	$sql = "SELECT * from users WHERE username=:username OR email=:email";
-	// 	$param = [
-	// 		'username' => $key,
-	// 		'email' => $key,
-	// 	];
+	public function loginAkun(string $username, string $password) : ?Akun
+	{
+		$sql = "SELECT * from akun WHERE username=:username";
+		$param = [
+			'username' => $username
+		];
 
-	// 	$result = $this->db->fetchOne($sql, \Phalcon\Db\Enum::FETCH_ASSOC, $param);
+        $result = $this->db->fetchOne($sql, \Phalcon\Db\Enum::FETCH_ASSOC, $param);
 
-	// 	// If data found
-	// 	if($result) {
-	// 		$user = new User(
-	// 			new UserId($result['user_id']),
-	// 			$result['username'],
-	// 			$result['email'],
-	// 			new Password($result['password']),
-	// 			$result['role']
-	// 		);
+		// If data found
+		if($result) {
+			$akun= new Akun(
+                $result['USERNAME'],
+                $result['EMAIL'],
+                $result['PASSWORD'],
+                $result['JENIS_AKUN'],
+                $result['ID_AKUN']
+            );
 
-	// 		// Check password from input
-	// 		if($user->getPassword()->isCorrect($password)) {
-	// 			return $user;
-	// 		}
-	// 	}
+			// Check password from input
+			if($akun->getPassword() == $password) {
+				return $akun;
+			}
+		}
 
-	// 	return null;
-	// }
+		return null;
+	}
 
 	// public function updateUser(User $user) : User {
 	// 	// $user = new User();

@@ -4,8 +4,8 @@ namespace Uqi\Dashboard\Presentation\Web\Controller;
 
 use Uqi\Dashboard\Core\Application\Service\AddAkun\AddAkunRequest;
 use Uqi\Dashboard\Core\Application\Service\AddAkun\AddAkunService;
-// use Uqi\Dashboard\Core\Application\Service\LoginUser\LoginUserRequest;
-// use Uqi\Dashboard\Core\Application\Service\LoginUser\LoginUserService;
+use Uqi\Dashboard\Core\Application\Service\LoginAkun\LoginAkunRequest;
+use Uqi\Dashboard\Core\Application\Service\LoginAkun\LoginAkunService;
 use Phalcon\Mvc\Controller;
 use Phalcon\Http\Request;
 use Phalcon\Security;
@@ -17,9 +17,9 @@ use Phalcon\Security;
 class AkunController extends BaseController
 {
 	/**
-	 * @var LoginUserService
+	 * @var LoginAkunService
 	 */
-	// protected $loginAkunService;
+	protected $loginAkunService;
 
 	/**
 	 * @var AddUserService
@@ -28,7 +28,7 @@ class AkunController extends BaseController
 
 	public function initialize()
 	{
-		// $this->loginUserService = $this->getDI()->get('loginUserService');
+		$this->loginAkunService = $this->getDI()->get('loginAkunService');
 		$this->addAkunService = $this->getDI()->get('addAkunService');
 	}
 
@@ -76,7 +76,7 @@ class AkunController extends BaseController
 			$this->flashSession->success('Thanks for registering!');
 			return $this->response->redirect('login');
 		} catch (\Exception $e) {
-			$this->flashSession->error($e);
+			$this->flashSession->error('Username / Email telah digunakan');
 			return $this->response->redirect('register');
 		}
 	}
@@ -85,7 +85,7 @@ class AkunController extends BaseController
 	{
 		$this->hasLoggedIn();
 
-		$this->view->pick('auth/login');
+		$this->view->pick('akun/login');
 	}
 
 	public function loginSubmitAction()
@@ -97,24 +97,24 @@ class AkunController extends BaseController
 
 		// https://docs.phalcon.io/4.0/en/security
 		// Validate CSRF Token
-		if(!$this->security->checkToken()) {
-			$this->flashSession->error("Invalid Token");
-			return $this->response->redirect('login');
-		}
+		// if(!$this->security->checkToken()) {
+		// 	$this->flashSession->error("Invalid Token");
+		// 	return $this->response->redirect('login');
+		// }
 
 		// Handle request
-		$keyValue = $this->request->getPost('keyValue');
+		$username = $this->request->getPost('username');
 		$password = $this->request->getPost('password');
 
-		$request = new LoginUserRequest($keyValue, $password);
+		$request = new LoginAkunRequest($username, $password);
 		try {
-			$response = $this->loginUserService->execute($request);
-			$user = $response->getData();
+			$response = $this->loginAkunService->execute($request);
+			$akun = $response->getData();
 
-			$this->session->set('auth', array(
-				'id' => $user->getUserId(),
-				'username' => $user->getUsername(),
-				'email' => $user->getEmail()
+			$this->session->set('akun', array(
+				'id_akun' => $akun->getIdAkun(),
+				'username' => $akun->getUsername(),
+				'email' => $akun->getEmail()
 			));
 
 			$this->response->redirect('dashboard');
@@ -124,7 +124,8 @@ class AkunController extends BaseController
 			// ]);
 			$this->view->disable();
 		} catch (\Exception $e) {
-			$this->flashSession->error("Invalid Username / Password");
+			// $this->flashSession->error("Invalid Username / Password");
+			$this->flashSession->error($e);
 			return $this->response->redirect('login');
 		}
 	}

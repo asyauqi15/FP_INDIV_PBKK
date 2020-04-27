@@ -10,7 +10,7 @@ interface AkunRepositoryInterface
 
 	// public function findAkun(Akun $akun) : ?akun;
 
-	// public function loginAkun(Akun $akun) : ?akun;
+	public function loginAkun(string $username, string $password) : ?Akun;
 
 	// public function updateAkun(Akun $akun) : Akun;
 
