@@ -30,8 +30,8 @@ class Akun
 
     private int $jenis_kelamin;
 
-    public function __construct($id_akun, $id_rumah_sakit, $id_villages, $id_pasien, $username, $email, $password, $jenis_akun, $jenis_identitas, $nomor_identitas, $nama_lengkap,
-        $alamat_lengkap, $jenis_kelamin)
+    public function __construct($username, $email, $password, $jenis_akun, $id_akun = 0, $id_rumah_sakit = 0, $id_villages = "", $id_pasien = 0, $jenis_identitas = 0, $nomor_identitas = "", $nama_lengkap = "",
+        $alamat_lengkap = "", $jenis_kelamin = 0)
 	{
 		$this->id_akun = $id_akun;
 		$this->id_rumah_sakit = $id_rumah_sakit;

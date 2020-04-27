@@ -12,34 +12,34 @@ $namespace = 'Uqi\Dashboard\Presentation\Web\Controller';
 $router->addGet('/register', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'auth',
+    'controller' => 'akun',
     'action' => 'register'
 ]);
 
 $router->addPost('/register/submit', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'auth',
+    'controller' => 'akun',
     'action' => 'registerSubmit'
 ]);
 
 $router->addGet('/login', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'auth',
+    'controller' => 'akun',
     'action' => 'login'
 ]);
 
 $router->addPost('/login/submit', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'auth',
+    'controller' => 'akun',
     'action' => 'loginSubmit'
 ]);
 
 $router->addPost('/logout/submit', [
     'namespace' => $namespace,
     'module' => 'dashboard',
-    'controller' => 'auth',
+    'controller' => 'akun',
     'action' => 'logout'
 ]);

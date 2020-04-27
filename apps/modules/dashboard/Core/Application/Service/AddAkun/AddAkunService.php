@@ -12,7 +12,7 @@ class AddAkunService
 
 	public function __construct(AkunRepositoryInterface $akunRepository)
 	{
-		$this->userRepository = $userRepository;
+		$this->akunRepository = $akunRepository;
 	}
 
 	public function execute(AddAkunRequest $request) 
