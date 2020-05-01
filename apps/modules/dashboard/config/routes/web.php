@@ -48,6 +48,41 @@ $router->addGet('/logout', [
 //-----Admin
 //==========
 
+$router->addGet('/adminlist', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'adminList'
+]);
+
+$router->addGet('/rumahsakitlist', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'rumahSakitList'
+]);
+
+$router->addGet('/adminrumahsakitlist', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'adminRumahSakitList'
+]);
+
+$router->addGet('/userlist', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'userList'
+]);
+
+$router->addGet('/tes', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'admin',
+    'action' => 'tes'
+]);
+
 $router->addGet('/addadmin', [
     'namespace' => $namespace,
     'module' => 'dashboard',

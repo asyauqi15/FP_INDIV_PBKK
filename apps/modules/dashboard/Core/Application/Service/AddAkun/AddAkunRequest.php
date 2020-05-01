@@ -8,18 +8,21 @@ class AddAkunRequest
 	protected $email;
 	protected $password;
 	protected $jenis_akun;
+	protected $id_rumah_sakit;
 
 	public function __construct(
 		$username, 
 		$email, 
 		$password, 
-		$jenis_akun
+		$jenis_akun,
+		$id_rumah_sakit = NULL
 	)
 	{
 		$this->username = $username;
 		$this->email = $email;
 		$this->password = $password;
 		$this->jenis_akun = $jenis_akun;
+		$this->id_rumah_sakit = $id_rumah_sakit;
 	}
 
 	public function getUsername()
@@ -60,5 +63,15 @@ class AddAkunRequest
 	public function setJenisAkun($jenis_akun)
 	{
 		$this->jenis_akun = $jenis_akun;
+	}
+
+	public function getIdRumahSakitAkun()
+	{
+		return $this->id_rumah_sakit;
+	}
+
+	public function setIdRumahSakitAkun($id_rumah_sakit)
+	{
+		$this->id_rumah_sakit = $id_rumah_sakit;
 	}
 }

@@ -24,9 +24,9 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="title">Register Admin Antrivit</h1>
+    <h1 class="title">Register Admin Rumah Sakit Antrivit</h1>
     <p>{{ this.flashSession.output() }}</p>
-    <form class="px-4 py-3" method="POST" action="{{ url('/addadmin/submit') }}">
+    <form class="px-4 py-3" method="POST" action="{{ url('/addadminrumahsakit/submit') }}">
         <div class="form-group">
             <label>Username</label>
             <input type="text" class="form-control" placeholder="Username" name="username" required="required">
@@ -36,6 +36,21 @@
             <input type="email" class="form-control" placeholder="email@example.com" name="email" required="required">
         </div>
         <div class="form-group">
+            <label>Rumah Sakit</label>
+            <select name="rumah_sakit" class="custom-select">
+                <option selected>Pilih Rumah Sakit</option>
+                <?php
+                foreach($rumah_sakit as $rs => $rsv)
+                {
+                ?>
+                <option value="<?php echo $rsv->getIdRumahSakit();?>"><?php echo $rsv->getNamaRumahSakit();?></option>
+                <?php
+                }
+                ?>
+              </select>
+              
+        </div>
+        <div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" placeholder="Password" name="password" id="password" required="required"> 
         </div>
@@ -43,7 +58,7 @@
             <label>Confirm Password</label>
             <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required="required">
         </div>
-        <input type="hidden" name="jenis_akun" value="2">
+        <input type="hidden" name="jenis_akun" value="1">
         <button type="submit" class="btn btn-danger btn-submit">Daftar</button>
     </form>
 </div>

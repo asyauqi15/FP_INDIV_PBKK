@@ -4,6 +4,7 @@ use Uqi\Dashboard\Core\Application\Service\GetAllProvinces\GetAllProvincesServic
 use Uqi\Dashboard\Core\Application\Service\GetAllRegencies\GetAllRegenciesService;
 use Uqi\Dashboard\Core\Application\Service\GetAllDistricts\GetAllDistrictsService;
 use Uqi\Dashboard\Core\Application\Service\GetAllVillages\GetAllVillagesService;
+use Uqi\Dashboard\Core\Application\Service\GetAllAkun\GetAllAkunService;
 use Uqi\Dashboard\Core\Application\Service\AddAkun\AddAkunService;
 use Uqi\Dashboard\Core\Application\Service\EditAkun\EditAkunService;
 use Uqi\Dashboard\Core\Application\Service\FindAkun\FindAkunService;
@@ -42,6 +43,10 @@ $di->set('getAllVillagesService', function() use ($di) {
 //=================
 //-----Akun Usecase
 //=================
+$di->set('getAllAkunService', function() use ($di) {
+    return new GetAllAkunService($di->get('sqlServerAkunRepository'));
+});
+
 $di->set('addAkunService', function() use ($di) {
     return new AddAkunService($di->get('sqlServerAkunRepository'));
 });

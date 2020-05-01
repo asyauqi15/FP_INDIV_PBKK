@@ -22,7 +22,8 @@ class AddAkunService
 				$request->getUsername(),
 				$request->getEmail(),
 				$request->getPassword(),
-				$request->getJenisAkun()
+				$request->getJenisAkun(),
+				$request->getIdRumahSakitAkun()
 			);
 
 			$result = $this->akunRepository->addAkun($akun);

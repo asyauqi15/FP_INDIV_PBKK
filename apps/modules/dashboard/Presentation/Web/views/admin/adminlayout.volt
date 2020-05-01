@@ -6,7 +6,7 @@
 
     <meta name="description" content="Final Project PBKK">
     <meta name="author" content="Ahmad Syauqi">
-    <title>{% block title %}{% endblock %} | ANTRIVIT</title>
+    <title>{% block title %}{% endblock %} | ADMIN ANTRIVIT</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -16,7 +16,7 @@
         .sidenav {
         height: 100%; /* Full-height: remove this if you want "auto" height */
         width: 200px; /* Set the width of the sidebar */
-        position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+        position: fixed; /* Fixed Sidebar (stay in place on scroll) */
         z-index: 1;
         top: 0;
         left: 0;
@@ -41,7 +41,7 @@
 
         /* Style page content */
         .main {
-        margin-left: 160px; /* Same as the width of the sidebar */
+        margin-left: 200px; /* Same as the width of the sidebar */
         padding: 0px 10px;
         }
 
@@ -56,7 +56,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-danger bg-danger" style="position: block;">
+    <nav class="navbar navbar-expand-lg navbar-danger bg-danger" style="position: block; margin-bottom: 20px;">
         <a class="navbar-brand text-light" href="#">ADMIN</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -78,10 +78,11 @@
     </nav>
     <!-- Side navigation -->
     <div class="sidenav">
-        <a href="#">List Admin</a>
-        <a href="#">List Rumah Sakit</a>
-        <a href="#">List Admin</a>
-        <a href="#">List Admin Rumah Sakit</a>
+        <a href="{{url('/')}}">Dashboard</a>
+        <a href="{{url('adminlist')}}">List Admin</a>
+        <a href="{{url('rumahsakitlist')}}">List Rumah Sakit</a>
+        <a href="{{url('adminrumahsakitlist')}}">List Admin Rumah Sakit</a>
+        <a href="{{url('userlist')}}">List User</a>
     </div>
     
     <!-- Page content -->

@@ -8,6 +8,8 @@ interface AkunRepositoryInterface
 {
 	public function addAkun(Akun $akun);
 
+	public function getAllAkun(): ?array;
+
 	// public function findAkun(Akun $akun) : ?akun;
 
 	public function loginAkun(string $username, string $password) : ?Akun;

@@ -24,15 +24,15 @@ class SqlServerRumahSakitRepository implements RumahSakitRepositoryInterface
 		if($results) {
 			foreach ($results as $result) {
 				$rumah_sakit = new RumahSakit(
+					$result['NAMARUMAH_SAKIT'],
+					$result['ALAMAT_RUMAH_SAKIT'],
 					$result['ID_RUMAH_SAKIT'],
                     $result['ID_VILLAGES'],
-					$result['NAMA_RUMAH_SAKIT'],
-					$result['ALAMAT_RUMAH_SAKIT'],
 					$result['KUOTA_RUMAH_SAKIT'],
 					$result['KUOTA_TERISI'],
 					$result['JUMLAH_DOKTER'],
 					$result['JUMLAH_PERAWAT'],
-					$result['JUMLAH_TENAGA_MEDIS']
+					$result['JUMLAH_TENAGA_MEDIS_LAINNYA']
 				);
 
 				array_push($all_rumah_sakit, $rumah_sakit);

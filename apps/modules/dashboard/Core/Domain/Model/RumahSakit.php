@@ -8,9 +8,9 @@ class RumahSakit
     
     private $id_villages;
 
-	private string $nama_rumah_sakit;
+	private $nama_rumah_sakit;
 
-	private string $alamat_rumah_sakit;
+	private $alamat_rumah_sakit;
 
     private $kuota_rumah_sakit;
     
