@@ -10,7 +10,7 @@ interface AkunRepositoryInterface
 
 	public function getAllAkun(): ?array;
 
-	// public function findAkun(Akun $akun) : ?akun;
+	public function findAkun($id_rumah_sakit) : ?Akun;
 
 	public function loginAkun(string $username, string $password) : ?Akun;
 

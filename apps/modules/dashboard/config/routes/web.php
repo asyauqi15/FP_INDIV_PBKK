@@ -7,7 +7,7 @@ $namespace = 'Uqi\Dashboard\Presentation\Web\Controller';
  */
 
 //=========
-//-----Auth
+//-----Akun
 //=========
 $router->addGet('/register', [
     'namespace' => $namespace,
@@ -42,6 +42,13 @@ $router->addGet('/logout', [
     'module' => 'dashboard',
     'controller' => 'akun',
     'action' => 'logout'
+]);
+
+$router->addPost('/editprofil', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'akun',
+    'action' => 'editProfil'
 ]);
 
 //==========
@@ -123,4 +130,64 @@ $router->addPost('/addadminrumahsakit/submit', [
     'module' => 'dashboard',
     'controller' => 'admin',
     'action' => 'registerAdminRumahSakitSubmit'
+]);
+
+//====================
+//-----AdminRumahSakit
+//====================
+
+$router->addGet('/listadminrumahsakit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'adminRumahSakit',
+    'action' => 'adminRumahSakitList'
+]);
+
+$router->addGet('/adminrumahsakitadd', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'adminRumahSakit',
+    'action' => 'registerAdminRumahSakit'
+]);
+
+$router->addPost('/adminrumahsakitadd/submit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'adminRumahSakit',
+    'action' => 'registerAdminRumahSakitSubmit'
+]);
+
+$router->addGet('/listpasien', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'adminRumahSakit',
+    'action' => 'pasienList'
+]);
+
+$router->addGet('/listantrean', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'adminRumahSakit',
+    'action' => 'antreanList'
+]);
+
+$router->addGet('/profilrumahsakit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'adminRumahSakit',
+    'action' => 'profilRumahSakit'
+]);
+
+$router->addPost('/profilrumahsakit/submit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'adminRumahSakit',
+    'action' => 'profilRumahSakitSubmit'
+]);
+
+$router->addPost('/bukatutupantrean/submit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'adminRumahSakit',
+    'action' => 'bukaTutupAntreanSubmit'
 ]);

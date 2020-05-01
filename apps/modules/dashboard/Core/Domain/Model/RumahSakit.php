@@ -20,7 +20,9 @@ class RumahSakit
 
     private $jumlah_perawat;
 
-    private $jumlah_tenaga_medis_lainnya;
+	private $jumlah_tenaga_medis_lainnya;
+	
+	private $status_antrean;
 
     public function __construct(
 		$nama_rumah_sakit, 
@@ -31,7 +33,8 @@ class RumahSakit
 		$kuota_terisi = NULL, 
 		$jumlah_dokter = NULL,
 		$jumlah_perawat = NULL, 
-		$jumlah_tenaga_medis_lainnya = NULL
+		$jumlah_tenaga_medis_lainnya = NULL,
+		$status_antrean = 0
 		)
 	{
 		$this->id_rumah_sakit = $id_rumah_sakit;
@@ -42,7 +45,8 @@ class RumahSakit
         $this->kuota_terisi = $kuota_terisi;
         $this->jumlah_dokter = $jumlah_dokter;
         $this->jumlah_perawat = $jumlah_perawat;
-        $this->jumlah_tenaga_medis_lainnya = $jumlah_tenaga_medis_lainnya;
+		$this->jumlah_tenaga_medis_lainnya = $jumlah_tenaga_medis_lainnya;
+		$this->status_antrean = $status_antrean;
 	}
 
 	public function getIdRumahSakit()
@@ -133,5 +137,15 @@ class RumahSakit
 	public function setJumlahTenagaMedisLainnya($jumlah_tenaga_medis_lainnya)
 	{
 		$this->jumlah_tenaga_medis_lainnya = $jumlah_tenaga_medis_lainnya;
-    }
+	}
+	
+	public function getStatusAntrean()
+	{
+		return $this->status_antrean;
+	}
+
+	public function setStatusAntrean($status_antrean)
+	{
+		$this->status_antrean = $status_antrean;
+	}
 }

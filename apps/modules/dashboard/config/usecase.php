@@ -20,6 +20,7 @@ use Uqi\Dashboard\Core\Application\Service\GetAntrean\GetAntreanService;
 use Uqi\Dashboard\Core\Application\Service\FindAntrean\FindAntreanService;
 use Uqi\Dashboard\Core\Application\Service\NextAntrean\NextAntreanService;
 use Uqi\Dashboard\Core\Application\Service\BackAntrean\BackAntreanService;
+use Uqi\Dashboard\Core\Application\Service\BukaTutupAntreanRumahSakit\BukaTutupAntreanRumahSakitService;
 
 //===================
 //-----Region Usecase
@@ -88,6 +89,10 @@ $di->set('deleteRumahSakitService', function() use ($di) {
 
 $di->set('getAllRumahSakitService', function() use ($di) {
     return new GetAllRumahSakitService($di->get('sqlServerRumahSakitRepository'));
+});
+
+$di->set('bukaTutupAntreanRumahSakitService', function() use ($di) {
+    return new BukaTutupAntreanRumahSakitService($di->get('sqlServerRumahSakitRepository'));
 });
 
 //====================

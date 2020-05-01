@@ -65,6 +65,37 @@ class SqlServerAkunRepository implements AkunRepositoryInterface
 		return $all_akun;
 	}
 
+
+	public function findAkun($id) : ?Akun
+	{
+		$sql = "SELECT * from AKUN WHERE id_akun=:id_akun";
+		$param = ['id_akun' => $id];
+
+		$result = $this->db->fetchOne($sql, \Phalcon\Db\Enum::FETCH_ASSOC, $param);
+
+		if($result) {
+			$akun = new Akun(
+				$result['USERNAME'],
+				$result['EMAIL'],
+				$result['PASSWORD'],
+				$result['JENIS_AKUN'],
+				$result['ID_RUMAH_SAKIT'],
+				$result['ID_AKUN'],
+				$result['ID_VILLAGES'],
+				$result['ID_PASIEN'],
+				$result['JENIS_IDENTITAS'],
+				$result['NOMOR_IDENTITAS'],
+				$result['NAMA_LENGKAP'],
+				$result['ALAMAT_LENGKAP'],
+				$result['JENIS_KELAMIN']
+			);
+
+			return $akun;
+		}
+
+		return null;
+	}
+
 	// public function findUserById(UserId $id) : ?User 
 	// {
 	// 	$sql = "SELECT * from users WHERE user_id=:user_id";
@@ -102,10 +133,18 @@ class SqlServerAkunRepository implements AkunRepositoryInterface
 		if($result) {
 			$akun= new Akun(
                 $result['USERNAME'],
-                $result['EMAIL'],
-                $result['PASSWORD'],
-                $result['JENIS_AKUN'],
-                $result['ID_AKUN']
+				$result['EMAIL'],
+				$result['PASSWORD'],
+				$result['JENIS_AKUN'],
+				$result['ID_RUMAH_SAKIT'],
+				$result['ID_AKUN'],
+				$result['ID_VILLAGES'],
+				$result['ID_PASIEN'],
+				$result['JENIS_IDENTITAS'],
+				$result['NOMOR_IDENTITAS'],
+				$result['NAMA_LENGKAP'],
+				$result['ALAMAT_LENGKAP'],
+				$result['JENIS_KELAMIN']
             );
 
 			// Check password from input

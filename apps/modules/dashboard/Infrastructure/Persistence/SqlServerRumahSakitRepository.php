@@ -32,7 +32,8 @@ class SqlServerRumahSakitRepository implements RumahSakitRepositoryInterface
 					$result['KUOTA_TERISI'],
 					$result['JUMLAH_DOKTER'],
 					$result['JUMLAH_PERAWAT'],
-					$result['JUMLAH_TENAGA_MEDIS_LAINNYA']
+					$result['JUMLAH_TENAGA_MEDIS_LAINNYA'],
+					$result['STATUS_ANTREAN'],
 				);
 
 				array_push($all_rumah_sakit, $rumah_sakit);
@@ -54,5 +55,44 @@ class SqlServerRumahSakitRepository implements RumahSakitRepositoryInterface
         $result = $this->db->execute($sql, $params);
 
 		return $result;
-    }
+	}
+	
+	public function findRumahSakit($id_rumah_sakit) : ?RumahSakit
+	{
+		$sql = "SELECT * FROM RUMAH_SAKIT WHERE ID_RUMAH_SAKIT = :id_rumah_sakit";
+		$params = [
+			'id_rumah_sakit' => $id_rumah_sakit
+        ];
+        $result = $this->db->fetchOne($sql, \Phalcon\Db\Enum::FETCH_ASSOC, $params);
+        
+		if($result) {
+			$rumah_sakit = new RumahSakit(
+				$result['NAMARUMAH_SAKIT'],
+				$result['ALAMAT_RUMAH_SAKIT'],
+				$result['ID_RUMAH_SAKIT'],
+				$result['ID_VILLAGES'],
+				$result['KUOTA_RUMAH_SAKIT'],
+				$result['KUOTA_TERISI'],
+				$result['JUMLAH_DOKTER'],
+				$result['JUMLAH_PERAWAT'],
+				$result['JUMLAH_TENAGA_MEDIS_LAINNYA'],
+				$result['STATUS_ANTREAN']
+			);
+		}
+
+		return $rumah_sakit;
+	}
+
+	public function bukaTutupAntreanRumahSakit($id_rumah_sakit, $status)
+	{
+		$sql = "UPDATE RUMAH_SAKIT SET STATUS_ANTREAN=:baru WHERE ID_RUMAH_SAKIT=:id_rumah_sakit";
+		$params = [
+			'id_rumah_sakit' => $id_rumah_sakit,
+			'baru' => $status
+		];
+
+		$result = $this->db->execute($sql, $params);
+
+		return;
+	}
 }

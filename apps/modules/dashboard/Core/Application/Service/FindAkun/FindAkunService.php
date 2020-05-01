@@ -17,6 +17,18 @@ class FindAkunService
 
     public function execute(FindAkunRequest $request)
     {
-        
+        try {
+			$id_akun = $request->getId();
+            $akun = $this->akunRepository->findAkun($id_akun);
+
+			if(!isset($akun)) {
+				throw new \Exception("akun not found");
+			}
+
+		} catch (\Exception $e) {
+			throw $e;
+		}
+
+		return $user;   
     }
 }

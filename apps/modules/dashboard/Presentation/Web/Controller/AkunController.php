@@ -95,13 +95,6 @@ class AkunController extends BaseController
 			return $this->response->redirect('login');
 		}
 
-		// https://docs.phalcon.io/4.0/en/security
-		// Validate CSRF Token
-		// if(!$this->security->checkToken()) {
-		// 	$this->flashSession->error("Invalid Token");
-		// 	return $this->response->redirect('login');
-		// }
-
 		// Handle request
 		$username = $this->request->getPost('username');
 		$password = $this->request->getPost('password');
@@ -115,14 +108,11 @@ class AkunController extends BaseController
 				'id_akun' => $akun->getIdAkun(),
 				'username' => $akun->getUsername(),
 				'email' => $akun->getEmail(),
-				'jenis_akun' => $akun->getJenisAkun()
+				'jenis_akun' => $akun->getJenisAkun(),
+				'id_rumah_sakit' => $akun->getIdRumahSakitAkun()
 			));
 
 			$this->response->redirect('/');
-			// $this->dispatcher->forward([
-			// 	'controller' => 'user',
-			// 	'action'     => 'index',
-			// ]);
 			$this->view->disable();
 		} catch (\Exception $e) {
 			$this->flashSession->error("Invalid Username / Password");
@@ -142,5 +132,35 @@ class AkunController extends BaseController
 		}
 
 		$this->response->redirect('/');
+	}
+
+	public function editProfilAction(){
+		// Check request
+		if(!$this->request->isPost()) {
+			return $this->response->redirect('/');
+		}
+		
+		// Handle request
+		$id = $this->request->getPost('id');
+
+		$request = new LoginAkunRequest($username, $password);
+		try {
+			$response = $this->loginAkunService->execute($request);
+			$akun = $response->getData();
+
+			$this->session->set('akun', array(
+				'id_akun' => $akun->getIdAkun(),
+				'username' => $akun->getUsername(),
+				'email' => $akun->getEmail(),
+				'jenis_akun' => $akun->getJenisAkun()
+			));
+
+			$this->response->redirect('/');
+			$this->view->disable();
+		} catch (\Exception $e) {
+			$this->flashSession->error("Invalid Username / Password");
+			// $this->flashSession->error($e);
+			return $this->response->redirect('login');
+		}
 	}
 }

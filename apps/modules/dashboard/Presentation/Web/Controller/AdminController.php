@@ -8,6 +8,7 @@ use Uqi\Dashboard\Core\Application\Service\AddRumahSakit\AddRumahSakitRequest;
 use Uqi\Dashboard\Core\Application\Service\AddRumahSakit\AddRumahSakitService;
 use Uqi\Dashboard\Core\Application\Service\GetAllRumahSakit\GetAllRumahSakitService;
 use Uqi\Dashboard\Core\Application\Service\GetAllAkun\GetAllAkunService;
+use Uqi\Dashboard\Core\Application\Service\FindAkun\FindAkunService;
 use Phalcon\Mvc\Controller;
 use Phalcon\Http\Request;
 use Phalcon\Security;
