@@ -156,11 +156,35 @@ class SqlServerAkunRepository implements AkunRepositoryInterface
 		return null;
 	}
 
-	// public function updateUser(User $user) : User {
-	// 	// $user = new User();
+	public function editAkun(Akun $akun)
+	{
+		$sql = "UPDATE AKUN 
+				SET 
+					EMAIL=:email, 
+					PASSWORD=:password, 
+					JENIS_AKUN=:jenis_akun, 
+					JENIS_IDENTITAS=:jenis_identitas,
+					NOMOR_IDENTITAS=:nomor_identitas,
+					NAMA_LENGKAP=:nama_lengkap,
+					ALAMAT_LENGKAP=:alamat_lengkap,
+					JENIS_KELAMIN=:jenis_kelamin
+				WHERE ID_AKUN=:id_akun";
+		$params = [
+			'email' => $akun->getEmail(),
+			'password' => $akun->getPassword(),
+			'jenis_akun' => $akun->getJenisAkun(),
+			'jenis_identitas' => $akun->getJenisIdentitasAkun(),
+			'nomor_identitas' => $akun->getNomorIdentitasAkun(),
+			'nama_lengkap' => $akun->getNamaLengkapAkun(),
+			'alamat_lengkap' => $akun->getAlamatLengkapAkun(),
+			'jenis_kelamin' => $akun->getJenisKelaminAkun(),
+			'id_akun' => $akun->getIdAkun()
+		];
 
-	// 	return $user;
-	// }
+		$result = $this->db->execute($sql, $params);
+
+		return;
+	}
 
 	// public function deleteUser(UserId $id) {
 		

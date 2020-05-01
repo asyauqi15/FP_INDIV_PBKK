@@ -1,12 +1,12 @@
 <?php
 // id username jenis akun
-namespace Uqi\Dashboard\Core\Application\Service\FindAkun;
+namespace Uqi\Dashboard\Core\Application\Service\EditAkun;
 
 use Exception;
 use Uqi\Dashboard\Core\Domain\Model\Akun;
 use Uqi\Dashboard\Core\Domain\Repository\AkunRepositoryInterface;
 
-class FindAkunService
+class EditAkunService
 {
     protected AkunRepositoryInterface $akunRepository;
 
@@ -15,20 +15,12 @@ class FindAkunService
         $this->akunRepository = $akunRepository;
     }
 
-    public function execute(FindAkunRequest $request)
+    public function execute(Akun $request)
     {
         try {
-			$id_akun = $request->getId();
-            $akun = $this->akunRepository->findAkun($id_akun);
-
-			if(!isset($akun)) {
-				throw new \Exception("akun not found");
-			}
-
+            $result = $this->akunRepository->editAkun($request);
 		} catch (\Exception $e) {
 			throw $e;
-		}
-
-		return $akun;
+		}   
     }
 }

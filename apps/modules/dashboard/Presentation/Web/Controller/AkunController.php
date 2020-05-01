@@ -6,6 +6,10 @@ use Uqi\Dashboard\Core\Application\Service\AddAkun\AddAkunRequest;
 use Uqi\Dashboard\Core\Application\Service\AddAkun\AddAkunService;
 use Uqi\Dashboard\Core\Application\Service\LoginAkun\LoginAkunRequest;
 use Uqi\Dashboard\Core\Application\Service\LoginAkun\LoginAkunService;
+use Uqi\Dashboard\Core\Application\Service\FindAkun\FindAkunRequest;
+use Uqi\Dashboard\Core\Application\Service\FindAkun\FindAkunService;
+use Uqi\Dashboard\Core\Application\Service\EditAkun\EditAkunService;
+use Uqi\Dashboard\Core\Domain\Model\Akun;
 use Phalcon\Mvc\Controller;
 use Phalcon\Http\Request;
 use Phalcon\Security;
@@ -26,10 +30,16 @@ class AkunController extends BaseController
 	 */
 	protected $addAkunService;
 
+	/**
+	 * @var FindAkunService
+	 */
+	protected $findAkunService;
+
 	public function initialize()
 	{
 		$this->loginAkunService = $this->getDI()->get('loginAkunService');
 		$this->addAkunService = $this->getDI()->get('addAkunService');
+		$this->findAkunService = $this->getDI()->get('findAkunService');
 	}
 
 	public function indexAction()
@@ -135,32 +145,93 @@ class AkunController extends BaseController
 	}
 
 	public function editProfilAction(){
+
+		if($this->session->akun!=NULL){
+			// find akun
+			$request = new FindAkunRequest($this->session->akun['id_akun']);
+			try {
+				$akun = $this->findAkunService->execute($request);
+			} catch (\Exception $e) {
+				var_dump($e);
+			}
+			$this->view->setVar('akun', $akun);
+
+			// load view
+            if($this->session->akun['jenis_akun']==2){
+                $this->view->pick('admin/editprofil');
+            }
+            elseif($this->session->akun['jenis_akun']==1){
+                $this->view->pick('adminrumahsakit/editprofil');
+            }
+            else{
+                $this->view->pick('user/editprofil');
+            }
+        }
+        else{
+            $this->view->pick('dashboard');
+        }
+	}
+
+	public function editProfilSubmitAction(){
 		// Check request
 		if(!$this->request->isPost()) {
-			return $this->response->redirect('/');
+			return $this->response->redirect('/editprofil');
 		}
-		
-		// Handle request
-		$id = $this->request->getPost('id');
 
-		$request = new LoginAkunRequest($username, $password);
+		// Handle Request
+		$username = $this->request->getPost('username');
+		$email = $this->request->getPost('email');
+		$password = $this->request->getPost('password');
+		$jenis_akun = $this->request->getPost('jenis_akun');
+		$id_rumah_sakit = $this->request->getPost('id_rumah_sakit');
+		$id_akun = $this->request->getPost('id_akun');
+		$id_villages = $this->request->getPost('id_villages');
+		$id_pasien = $this->request->getPost('id_pasien');
+		$jenis_identitas = $this->request->getPost('jenis_identitas');
+		$nomor_identitas = $this->request->getPost('nomor_identitas');
+		$nama_lengkap = $this->request->getPost('nama_lengkap');
+		$alamat_lengkap = $this->request->getPost('alamat_lengkap');
+		$jenis_kelamin = $this->request->getPost('jenis_kelamin');
+
+		$akun = new Akun(
+			$username,
+			$email,
+			$password,
+			$jenis_akun,
+			$id_rumah_sakit,
+			$id_akun,
+			$id_villages,
+			$id_pasien,
+			$jenis_identitas,
+			$nomor_identitas,
+			$nama_lengkap,
+			$alamat_lengkap,
+			$jenis_kelamin
+		);
+
 		try {
-			$response = $this->loginAkunService->execute($request);
-			$akun = $response->getData();
-
-			$this->session->set('akun', array(
-				'id_akun' => $akun->getIdAkun(),
-				'username' => $akun->getUsername(),
-				'email' => $akun->getEmail(),
-				'jenis_akun' => $akun->getJenisAkun()
-			));
-
-			$this->response->redirect('/');
-			$this->view->disable();
+			$response = $this->editAkunService->execute($akun);
+			$this->flashSession->success("Data Berhasil di Ubah");
+			$this->response->redirect('/editprofil');
 		} catch (\Exception $e) {
-			$this->flashSession->error("Invalid Username / Password");
-			// $this->flashSession->error($e);
-			return $this->response->redirect('login');
+			$this->flashSession->error("Data Gagal di Ubah");
+			return $this->response->redirect('editprofil');
+			// var_dump($e);
 		}
+
+		if($this->session->akun!=NULL){
+            if($this->session->akun['jenis_akun']==2){
+                $this->view->pick('admin/editprofil');
+            }
+            elseif($this->session->akun['jenis_akun']==1){
+                $this->view->pick('adminrumahsakit/editprofil');
+            }
+            else{
+                $this->view->pick('user/editprofil');
+            }
+        }
+        else{
+            $this->view->pick('dashboard');
+        }
 	}
 }

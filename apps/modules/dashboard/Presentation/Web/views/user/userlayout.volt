@@ -29,7 +29,7 @@
                   Akun
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="">Edit Profil</a>
+                  <a class="dropdown-item" href="{{url('editprofil')}}">Edit Profil</a>
                   <a class="dropdown-item" href="{{url('logout')}}">Logout</a>
                 </div>
               </li>

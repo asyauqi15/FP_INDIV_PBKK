@@ -44,11 +44,18 @@ $router->addGet('/logout', [
     'action' => 'logout'
 ]);
 
-$router->addPost('/editprofil', [
+$router->addGet('/editprofil', [
     'namespace' => $namespace,
     'module' => 'dashboard',
     'controller' => 'akun',
     'action' => 'editProfil'
+]);
+
+$router->addPost('/editprofil/submit', [
+    'namespace' => $namespace,
+    'module' => 'dashboard',
+    'controller' => 'akun',
+    'action' => 'editProfilSubmit'
 ]);
 
 //==========
